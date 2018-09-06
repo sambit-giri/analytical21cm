@@ -1,0 +1,31 @@
+##clean the object module file first
+##then create the fortran subroutine library libANRAGfortlib.a 
+##and the shared library ANRAGpylib.so for python which would be generated using f2py
+>> bash makelibfile.sh
+## For test there is a simple python code anrag.py
+##Note that the Parameter input array should be in the frm of fX, Alpha, N_ion/4000, T_vit/10000.
+##For test run
+>> python anrag.py
+
+
+## In case you want to write the output arrays in binary file, set write_output_file = .true. in param.f90 file and recompile
+
+## Input Info############
+nzl = 120 # this is nzloop used in the fortran code
+nkb = 10 # this is nkbin used in fortran code
+mbin = 100 # this is massdim_comm
+arr = [fx, alpha, N_ion, T_vir]	# this is the parameter array 
+## Parameter array should be in the frm of fX, Alpha, N_ion/4000, T_vir/10000.0
+FX:(0.01,100), fiducial: 1
+Alpha:(0.1, 1.5) : fiducial: 0.5 (QSO)
+N_ion : (0.1, 10), fiducial: 1
+T_vir: (1, 100) , fiducial: 1
+
+##Info for output arrays###
+
+z_arr # This output array is z_arr(nzl) carries the redshfits bin
+GLB_arr # This output array is GLB_arr(nzl, 4) which carries the global info at different z: xhii, Tk, Ts, Tb 
+k_arr # This output array is k_arr(nkb) which represents the k-bins
+PSKZ_arr # PSKZ_arr(nzl, nkb) carries power spectrum at different scales at different redshift
+BSD_R_ARR # BSD_R_ARR(mbin) is the R-bin at which BSD is estimated
+BSDZ_arr # BSDZ_arr(nzl, mbin) carries BSDs at different mass scales at different redshift
