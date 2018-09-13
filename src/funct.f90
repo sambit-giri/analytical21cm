@@ -872,7 +872,7 @@ FUNCTION mass_av_bias(z)
 	res=0.d0
 	res1=0.d0
 	DO 
-		M2=M1*1.2d0
+		M2=M1*5.2d0
 		M=(M1+M2)*0.5d0
 		delm=M2-M1
 		if(M>1d14) exit

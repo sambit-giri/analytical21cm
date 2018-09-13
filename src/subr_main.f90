@@ -36,7 +36,7 @@ end subroutine logspace_dp
 
 
 
-SUBROUTINE reionization_21cm(arr, z_arr, GLB_arr, k_arr, PSKZ_arr, BSD_R_out, BSDZ_arr)
+SUBROUTINE reionization_21cm(arr, zcut, z_arr, GLB_arr, k_arr, PSKZ_arr, BSD_R_out, BSDZ_arr)
 	USE nrtype
 	USE nr , ONLY : odeint,rkqs
 	USE ode_path 
@@ -47,6 +47,7 @@ SUBROUTINE reionization_21cm(arr, z_arr, GLB_arr, k_arr, PSKZ_arr, BSD_R_out, BS
 	use subr_plot
 	IMPLICIT NONE
 	real(dp), dimension(nparam), intent(in) ::arr
+	real(dp), intent(in) :: zcut
 	real(dp), dimension(nzloop), intent(out) :: z_arr
 	real(dp), dimension(nzloop, 4), intent(out) :: GLB_arr
 	real(dp), dimension(nkbin), intent(out) :: k_arr
@@ -214,6 +215,11 @@ else
 
 		zp=z
 		z=zp-delz_eor
+
+if(zp<=zcut) then
+write(*,*) 'Exit limit reached, zcut=', zcut
+exit
+end if
 
 		!inter_arr=(/tbmin, zmintb, psmax, zpsmax, psz8, psz9, psz10/)
 end if
