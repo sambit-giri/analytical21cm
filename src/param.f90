@@ -152,6 +152,7 @@ module param
 
 	integer, parameter :: nparam = 4	!!number of possible parameters , fx, al, n_gamma
 	logical, parameter :: write_output_file = .false.
+	logical, parameter :: wr_messages = .false.
 
 
 

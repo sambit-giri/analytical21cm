@@ -8,6 +8,7 @@ contains
 
 SUBROUTINE declare
 	IMPLICIT NONE
+if(wr_messages) then
 
 	write(*,*) 'Cosmological parameters:: omega_l, omega_m, omega_b, h, sigma_8', omega_l, omega_m, omega_b, hlittle, sigma_8
 	write(*,*) 'X-ray properies :: f_X, Alpha_s', f_X_param, Alpha_s_param
@@ -20,6 +21,7 @@ SUBROUTINE declare
 	write(*,*) 'Choose right halo mass function'
 	stop
 	end if
+end if
 
 END SUBROUTINE declare
 

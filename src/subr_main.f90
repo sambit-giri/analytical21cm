@@ -217,7 +217,7 @@ else
 		z=zp-delz_eor
 
 if(zp<=zcut) then
-write(*,*) 'Exit limit reached, zcut=', zcut
+if(wr_messages) write(*,*) 'Exit limit reached, zcut=', zcut
 exit
 end if
 
@@ -262,7 +262,7 @@ BSD_R_out = BSD_R_arr
 
 if(write_output_file) then
 	ifile = output_path//trim(filename_comm)//".bin"
-	write(*,*) ifile
+if(wr_messages)	write(*,*) ifile
 	open(unit=27,file=ifile, status='replace', form='unformatted')
 	write(27) nzloop, nkbin, 4, massdim_comm
 	write(27) real(z_arr)

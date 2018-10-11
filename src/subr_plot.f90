@@ -13,7 +13,7 @@ IMPLICIT NONE
 !!write collapsed fraction.. 
 
 	ifile = output_path//trim(filename)//"fcoll.dat"
-	write(*,*) ifile
+if(wr_messages)	write(*,*) ifile
 	open(unit=2,file=ifile)
 	write(2,*) '#z, fcoll'
 
@@ -31,7 +31,7 @@ IMPLICIT NONE
 	ifile = output_path//trim(filename)//'z_6dndlnm.dat'
 	open(unit=1, file=ifile)
 	write(1,*) '#M(M0/h), dndlnm'
-	write(*,*) ifile
+if(wr_messages)	write(*,*) ifile
 	M=1d8
 	z=6.0d0
 	DO 
@@ -69,7 +69,7 @@ SUBROUTINE plot_sigmam(filename)
 	M1=M
 
 	ifile = output_path//trim(filename)//"sigmam.dat"
-	write(*,*) ifile
+if(wr_messages)	write(*,*) ifile
 	open(unit=219,file=ifile)
 	write(219,*) "#M/hlittle, sig**2.0, sig"
 
@@ -215,7 +215,7 @@ SUBROUTINE plot_Qz(ion_ef, filename)
 
 
 	ifile = output_path//trim(filename)//"Q_z.dat"
-	write(*,*) ifile
+if(wr_messages)	write(*,*) ifile
 	open(unit=219,file=ifile)
 	write(219,*) "#z, Q "
 
@@ -262,7 +262,7 @@ SUBROUTINE plot_correl(ion_ef, z, filename)
 	call Initialize_correlation_dd_xx_xd(z, ion_ef, Q, nrdim, rarr, xi_dd, xi_xx, xi_xd)
 
 	ifile = output_path//trim(filename)//"cor_dd.dat"
-	write(*,*) ifile
+if(wr_messages)	write(*,*) ifile
 	open(unit=219,file=ifile)
 	write(219,*) "#R (Mpc/h), xi_dd, xi_xx, xi_xd"
 
@@ -292,7 +292,7 @@ implicit none
 
 
 	ifile = output_path//"nfw.dat"
-	write(*,*) ifile
+if(wr_messages)	write(*,*) ifile
 	open(unit=219,file=ifile)
 write(219,*) "#R (kpc), rho_nfw (M0/pc**3)"
 

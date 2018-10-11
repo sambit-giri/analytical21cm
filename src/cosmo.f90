@@ -24,7 +24,9 @@ SUBROUTINE init_kbin(n,karr)
 	exit
 	end if
 	END DO
-	write(*,*) 'kmin (h/Mpc), kmax', minval(karr), maxval(karr)
+
+
+if(wr_messages)	write(*,*) 'kmin (h/Mpc), kmax', minval(karr), maxval(karr)
 !stop
 
 END SUBROUTINE init_kbin
@@ -36,7 +38,7 @@ SUBROUTINE mean_nh_nhe(z, nh, nhe)
 	nh=H_No*(1.d0+z)**3.d0
 	nhe=He_No*(1.d0+z)**3.d0
 
-	write(*,*) 'nh, nhe, z', nh, nhe, z
+if(wr_messages)	write(*,*) 'nh, nhe, z', nh, nhe, z
 
 END SUBROUTINE mean_nh_nhe
 
